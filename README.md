@@ -6,10 +6,6 @@ Knowledge Signal helps learners understand what their notes actually demonstrate
 
 The app evaluates demonstrated knowledge across five dimensions, reports JEV's confidence in every rating, and clearly separates evidence from assumptions.
 
-## Demo
-
-<video src="assets/demo.mp4" controls width="100%"></video>
-
 ## Why it exists
 
 Notes are a useful learning artifact, but their length and polish do not reliably reveal understanding. A page full of terminology may reflect less knowledge than a short note that accurately explains a concept, links causes to effects, and applies it to a realistic situation.

@@ -8,9 +8,7 @@ The app evaluates demonstrated knowledge across five dimensions, reports JEV's c
 
 ## Demo
 
-<video src="assets/demo.mp4" controls width="100%"></video>
-
-> **Note**: Place your video file as `demo.mp4` inside the `assets/` folder (or update the filename in the HTML `<video>` tag above).
+<video src="assets/demo.mov" controls width="100%"></video>
 
 ## Why it exists
 

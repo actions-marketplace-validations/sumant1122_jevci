@@ -6,6 +6,12 @@ Knowledge Signal helps learners understand what their notes actually demonstrate
 
 The app evaluates demonstrated knowledge across five dimensions, reports JEV's confidence in every rating, and clearly separates evidence from assumptions.
 
+## Demo
+
+<video src="assets/demo.mp4" controls width="100%"></video>
+
+> **Note**: Place your video file as `demo.mp4` inside the `assets/` folder (or update the filename in the HTML `<video>` tag above).
+
 ## Why it exists
 
 Notes are a useful learning artifact, but their length and polish do not reliably reveal understanding. A page full of terminology may reflect less knowledge than a short note that accurately explains a concept, links causes to effects, and applies it to a realistic situation.
@@ -104,6 +110,7 @@ The prototype accepts up to 40,000 characters. It currently supports pasted text
 │   ├── index.html     # Product interface
 │   ├── app.js         # Form handling and profile rendering
 │   └── styles.css     # Responsive visual design
+├── assets/            # Media assets (demo videos, screenshots)
 ├── package.json
 └── README.md
 ```

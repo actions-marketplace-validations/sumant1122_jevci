@@ -8,7 +8,7 @@ The app evaluates demonstrated knowledge across five dimensions, reports JEV's c
 
 ## Demo
 
-<video src="assets/demo.mov" controls width="100%"></video>
+<video src="assets/demo.mp4" controls width="100%"></video>
 
 ## Why it exists
 

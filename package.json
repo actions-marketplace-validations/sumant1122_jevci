@@ -1,7 +1,7 @@
 {
   "name": "jevci",
   "version": "1.0.0",
-  "description": "Sub-second code diff, commit, and doc quality gate powered by Jev (TypeSafe AI)",
+  "description": "Sub-second code diff, commit, and doc quality gate powered by TypeSafe AI Jev SystemOne",
   "type": "module",
   "main": "lib/evaluator.js",
   "bin": {
@@ -11,6 +11,15 @@
     "start": "node bin/jevci.js",
     "check": "node bin/jevci.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumant1122/jevci.git"
+  },
+  "author": "Sumant",
+  "bugs": {
+    "url": "https://github.com/sumant1122/jevci/issues"
+  },
+  "homepage": "https://github.com/sumant1122/jevci#readme",
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0"
   },

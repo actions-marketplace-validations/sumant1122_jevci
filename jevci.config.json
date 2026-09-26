@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "jevci-config",
+  "threshold": 70,
+  "diffTarget": "HEAD~1",
+  "weights": {
+    "commit_quality": 0.25,
+    "doc_alignment": 0.25,
+    "breaking_risk": 0.25,
+    "security_audit": 0.25
+  },
+  "checks": {
+    "commit_quality": true,
+    "doc_alignment": true,
+    "breaking_risk": true,
+    "security_audit": true
+  }
+}

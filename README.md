@@ -1,136 +1,156 @@
-# Knowledge Signal
+# ⚡ JevCI
 
-> A JEV-powered learning diagnostic that turns study notes into confidence-aware knowledge profiles.
+> **Sub-second code diff, commit, and doc quality gate powered by TypeSafe AI Jev SystemOne.**
 
-Knowledge Signal helps learners understand what their notes actually demonstrate about a subject. Paste notes or upload a text/Markdown file, set a topic and scope, and receive a visual profile—not a black-box grade.
+JevCI brings zero-latency quality enforcement to your terminal, git pre-commit hooks, CI/CD pipelines, and GitHub Actions. Instead of waiting 30–60 seconds for slow autoregressive LLMs, JevCI leverages Jev's fast System 1 primitives (`score` and `noul`) to evaluate pull requests and code changes in sub-200 milliseconds.
 
-The app evaluates demonstrated knowledge across five dimensions, reports JEV's confidence in every rating, and clearly separates evidence from assumptions.
+---
 
-## Why it exists
+## 🚀 Key Features
 
-Notes are a useful learning artifact, but their length and polish do not reliably reveal understanding. A page full of terminology may reflect less knowledge than a short note that accurately explains a concept, links causes to effects, and applies it to a realistic situation.
+* **⚡ Sub-Second Evaluation:** Runs 4 parallel quality rubrics in sub-200ms without blocking developer workflow.
+* **🎯 Calibrated Probability Bounds:** Returns numerical scores (0–100) and probability match confidence for every quality lens.
+* **🔍 4 Core Quality Lenses:**
+  1. **Commit Message Quality:** Verifies scope, rationale, and conventional commit standards (`feat/fix/refactor`).
+  2. **Doc & Code Alignment:** Ensures `README.md` and public API docs stay up-to-date with code diffs.
+  3. **API Contract & Breaking Risk:** Detects modified signatures, removed exports, or breaking changes.
+  4. **Secret & Security Audit:** Scans diffs for exposed API keys, private credentials, or unsafe security patterns.
+* **💻 Multiple Output Targets:**
+  * **ANSI Terminal Dashboard:** Rich CLI table output with status pills and score bars.
+  * **GitHub PR Comment Markdown:** Automatically generates markdown summaries ready for GitHub PR comments.
+  * **JSON Reports:** Programmatic output for custom CI integrations.
+* **🖥️ Web Dashboard:** Visually inspect local git repo diffs or test custom code snippets interactively.
 
-Knowledge Signal uses structured JEV judgments to make that distinction visible. It is designed to support reflection and study planning—not to label a learner or make high-stakes decisions.
+---
 
-## What it assesses
+## 🛠️ Quick Start
 
-JEV evaluates the submitted notes independently across these five lenses:
-
-| Dimension | What it looks for |
-| --- | --- |
-| Conceptual depth | Understanding beyond isolated keywords or definitions |
-| Technical accuracy | Accurate claims and absence of material errors |
-| Applied reasoning | Examples, procedures, trade-offs, troubleshooting, or decisions |
-| Mental model | Relationships, mechanisms, causes, and consequences |
-| Topic scope | Demonstrated breadth relative to the selected topic scope |
-
-Each lens uses a descriptive five-level scale, from no demonstrated understanding to nuanced mastery. The server normalizes the scores to 0–100, then combines them with transparent weights:
-
-```text
-30% conceptual depth
-25% technical accuracy
-20% applied reasoning
-15% mental model
-10% topic scope
-```
-
-The resulting overall score is a summary, not a replacement for the individual dimensions.
-
-## Understanding JEV rating confidence
-
-**Score** and **JEV rating confidence** mean different things:
-
-- A score of `85/100` means the notes strongly demonstrate that dimension.
-- A `66% JEV rating confidence` means the evidence is somewhat split between nearby levels, so the exact score is less certain.
-
-Confidence measures how concentrated JEV's probability distribution is around its rating. It does **not** measure the learner's ability, intelligence, or potential.
-
-## How it works
-
-```text
-Notes + topic + expected scope
-              │
-              ▼
-      Node.js server (API key stays here)
-              │
-              ▼
-       JEV scores 5 questions in parallel
-              │
-              ▼
- Normalize scores → apply weights → return profile
-              │
-              ▼
-   Browser renders score, dimensions, confidence, and elapsed time
-```
-
-The browser displays the user-visible analysis time, which includes the network request, server work, and JEV response.
-
-## Quick start
-
-### Prerequisites
-
-- Node.js 20+
-- A [TypeSafe AI](https://typesafe.ai) API key
-
-### Install and run
+### 1. Run via CLI (`npx jevci`)
 
 ```sh
+# Clone repository
 git clone https://github.com/sumant1122/knowledge-signal.git
-cd knowledge-signal
+cd jev
+
+# Install dependencies
 npm install
+
+# Run quality gate on your latest git diff
+npx jevci
+```
+
+Set your TypeSafe AI key to enable live model judgments:
+
+```sh
+TYPESAFE_API_KEY=your_key npx jevci
+```
+
+*(If `TYPESAFE_API_KEY` is not set, JevCI runs in local simulation mode for instant offline testing).*
+
+---
+
+## 📋 CLI Options
+
+```text
+Usage:
+  npx jevci [options]
+
+Options:
+  -t, --target <range>     Git diff target (e.g., HEAD~1, main...HEAD, staged). Default: HEAD~1
+  -c, --commit "<msg>"     Override commit message to evaluate.
+  --threshold <number>     Minimum passing quality score (0-100). Default: 70
+  -f, --format <format>    Output format: cli | markdown | json. Default: cli
+  -o, --out <path>         Write report to specified output file path.
+  -h, --help               Show help menu.
+```
+
+### CLI Examples
+
+```sh
+# Evaluate staged changes before committing
+npx jevci --target staged
+
+# Evaluate PR diff against main branch with an 80/100 threshold
+npx jevci --target main...HEAD --threshold 80
+
+# Generate a GitHub PR markdown comment report file
+npx jevci --format markdown --out jevci-report.md
+```
+
+---
+
+## 🌐 Web Dashboard
+
+Launch the interactive web dashboard:
+
+```sh
 TYPESAFE_API_KEY=your_key npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) to:
+* Auto-inspect your local git repository's active diffs and commit log.
+* Interactively test custom code diffs and adjust quality thresholds.
+* Copy one-click GitHub PR markdown reports.
 
-For a local-only configuration, you can place the key in your shell environment before starting the server. Do not commit API keys or `.env` files.
+---
 
-## Using the diagnostic
+## 🐙 GitHub Action Setup
 
-1. Enter a topic, such as `Linux`.
-2. Optionally define the scope, such as `command line and permissions`.
-3. Paste study notes or upload a `.txt` / `.md` file.
-4. Select **Analyze notes**.
-5. Review the overall score, JEV rating confidence, elapsed time, and each diagnostic lens.
+Add JevCI to your repository workflow (`.github/workflows/jevci.yml`):
 
-The prototype accepts up to 40,000 characters. It currently supports pasted text and text/Markdown files.
+```yaml
+name: JevCI Quality Gate
 
-## Project structure
+on:
+  pull_request:
+    branches: [ main ]
 
-```text
-.
-├── server.js          # Static server, JEV request, normalization, and composite score
-├── public/
-│   ├── index.html     # Product interface
-│   ├── app.js         # Form handling and profile rendering
-│   └── styles.css     # Responsive visual design
-├── assets/            # Media assets (demo videos, screenshots)
-├── package.json
-└── README.md
+jobs:
+  jevci-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - name: Run JevCI Check
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: |
+          npx jevci --threshold 70 --format markdown --out jevci-report.md
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('jevci-report.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
 ```
 
-## Privacy and responsible use
+---
 
-- The TypeSafe API key is only read by the server; it is never sent to the browser.
-- Keep secrets and personal data out of submitted notes.
-- This prototype sends notes to the configured TypeSafe AI service for analysis.
-- The output reflects **demonstrated knowledge in the submitted material**, not complete subject mastery.
-- Do not use it as the sole basis for admissions, hiring, grading, or other high-stakes decisions.
+## 🧠 Built With Jev (TypeSafe AI)
 
-## Roadmap
+JevCI is powered by **Jev**, the non-autoregressive "System One" foundational model released by TypeSafe AI.
 
-- [ ] Add `.docx` and PDF text extraction
-- [ ] Generate a short adaptive quiz to validate uncertain or weak dimensions
-- [ ] Suggest a personalized study plan based on the profile
-- [ ] Let users tune assessment weights by learning goal
-- [ ] Add optional history and progress tracking with explicit consent
+* **Latency:** ~100–300 ms
+* **Cost:** ~$0.042 per 1M tokens
+* **Primitives used:** `score()` for multi-level quality rubrics and `noul()` for security checks.
 
-## Built with
+---
 
-- [JEV / TypeSafe AI](https://typesafe.ai) for typed, probability-aware assessments
-- Node.js and the TypeSafe JavaScript SDK
-- Vanilla HTML, CSS, and JavaScript
+## 📄 License
 
-## License
-
-TBD.
+MIT

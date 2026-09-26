@@ -6,7 +6,7 @@
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](https://nodejs.org)
 [![Jev Powered](https://img.shields.io/badge/Powered%20By-TypeSafe%20Jev-cyan.svg)](https://typesafe.ai)
 
-JevCI brings zero-latency quality enforcement to your terminal, git pre-commit hooks, CI/CD pipelines, and GitHub Actions. Instead of waiting 30–60 seconds for slow autoregressive LLMs, JevCI leverages Jev's fast System 1 primitives (`score` and `noul`) to evaluate pull requests and code changes in **sub-200 milliseconds**.
+JevCI brings zero-latency quality enforcement to your terminal, git pre-commit hooks, CI/CD pipelines, and GitHub Actions. Instead of waiting 30–60 seconds for slow autoregressive LLMs, JevCI leverages Jev's fast System 1 primitives (`score` and `noul`) to evaluate pull requests and code changes with **sub-second end-to-end latency** (~100–250ms model inference).
 
 ---
 
@@ -16,7 +16,7 @@ JevCI brings zero-latency quality enforcement to your terminal, git pre-commit h
   Git Diff + Commit Message + Docs
                  │
                  ▼
-       JevCI Evaluator (<200ms)
+     JevCI Evaluator (<1 second total)
                  │
   ┌──────────────┼──────────────┬──────────────┐
   ▼              ▼              ▼              ▼
@@ -38,7 +38,7 @@ PASS (Exit 0)       FAIL (Exit 1)
 
 ## 🚀 Key Features
 
-* **⚡ Sub-Second Evaluation:** Runs 4 parallel quality rubrics in sub-200ms without blocking developer workflow.
+* **⚡ Sub-Second Total Latency:** Runs 4 parallel quality rubrics end-to-end in <1s (~20x faster than traditional 20–45s LLM evals).
 * **🎯 Calibrated Probability Bounds:** Returns numerical scores (0–100) and probability match confidence for every quality lens.
 * **🔍 4 Core Quality Lenses:**
   1. **Commit Message Quality:** Verifies scope, rationale, and conventional commit standards (`feat/fix/refactor`).

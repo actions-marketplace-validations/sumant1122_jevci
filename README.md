@@ -10,6 +10,16 @@ JevCI brings zero-latency quality enforcement to your terminal, git pre-commit h
 
 ---
 
+## 📸 Screenshots & Demo
+
+| ANSI Terminal CLI Output (`npx jevci`) | Interactive Web Dashboard (`npm run dev`) |
+| :---: | :---: |
+| ![JevCI CLI Report](assets/screenshot-cli.png) | ![JevCI Web Dashboard](assets/screenshot-dashboard.png) |
+
+*(Replace `assets/screenshot-cli.png` and `assets/screenshot-dashboard.png` with your images or screenshots)*
+
+---
+
 ## ⚡ How It Works
 
 ```text

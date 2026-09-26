@@ -8,8 +8,7 @@
     "jevci": "bin/jevci.js"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
+    "start": "node bin/jevci.js",
     "check": "node bin/jevci.js"
   },
   "dependencies": {

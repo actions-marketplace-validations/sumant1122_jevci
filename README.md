@@ -10,13 +10,11 @@ JevCI brings zero-latency quality enforcement to your terminal, git pre-commit h
 
 ---
 
-## 📸 Screenshots & Demo
+## 📸 Preview & Demo
 
-| ANSI Terminal CLI Output (`npx jevci`) | Interactive Web Dashboard (`npm run dev`) |
-| :---: | :---: |
-| ![JevCI CLI Report](assets/screenshot-cli.png) | ![JevCI Web Dashboard](assets/screenshot-dashboard.png) |
-
-*(Replace `assets/screenshot-cli.png` and `assets/screenshot-dashboard.png` with your images or screenshots)*
+<p align="center">
+  <img src="assets/screenshot-cli.png" alt="JevCI Terminal CLI Quality Gate" width="100%" />
+</p>
 
 ---
 
@@ -59,7 +57,6 @@ PASS (Exit 0)       FAIL (Exit 1)
   * **ANSI Terminal Dashboard:** Rich CLI table output with status pills and score bars.
   * **GitHub PR Comment Markdown:** Automatically generates markdown summaries ready for GitHub PR comments.
   * **JSON Reports:** Programmatic output for custom CI integrations.
-* **🖥️ Web Dashboard:** Visually inspect local git repo diffs or test custom code snippets interactively.
 
 ---
 
@@ -225,21 +222,6 @@ You can customize quality weights, active checks, and score thresholds in `jevci
   }
 }
 ```
-
----
-
-## 🌐 Web Dashboard & Interactive Playground
-
-JevCI includes a developer web dashboard to inspect local git repositories visually:
-
-```sh
-TYPESAFE_API_KEY=your_key npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to:
-* Auto-load active local git diffs and commit messages.
-* Interactively adjust quality thresholds and inspect confidence scores.
-* Generate and copy 1-click Markdown PR comments.
 
 ---
 
